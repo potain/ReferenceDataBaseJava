@@ -1,0 +1,42 @@
+Reference database project.
+
+Step 1: development of a single class
+To refer to an article in a scientific journal one needs
+1.	the title;
+2.	the author(s);
+3.	the name of the journal it was published in;
+4.	the issue number of the journal;
+5.	the year of publication.
+
+A Java class should be defined to represent journal articles. This class should have the attributes listed above. It should define setters and getters for each of the attributes. The name of an author is given as last name, first name, e.g., “Einstein, Albert”. Since an article can have multiple authors, this attribute is represented as an array.
+Define and implement the following methods
+1.	an inspector that returns the number of authors
+2.	an inspector that returns an array of authors, but represented as strings consisting the author’s initial and the last name, e.g., “A. Einstein”;
+3.	a mutator that capitalizes the title, if the original title was “Brownian motion in fluids”, it should be changed to “Brownian Motion In Fluids”;
+4.	an inspector that returns true if the article was published more that 10 years ago.
+
+Obviously, the implementation should adhere to the design principles presented in the course. Attention should be paid to documentation and proper (informal) specification.
+Feel free to use the Java standard library in your implementation.
+
+Step 2: development of a series of associated classes
+Modify the class you previously defined so that it has two extra attributes:
+•	cites: this attributes refers to other articles cited by this article;
+•	citedBy: this attributes refers to other articles it is cited by; and
+•	an identifier.
+
+Define appropriate setters and getters for these attributes.
+Define a class representing a reference database, i.e., a collection of journal articles. This class should define methods to
+•	add a new article to the database;
+•	find all articles authored by an author, given as “initialOfFirstName. lastName”, e.g., A. Einstein;
+•	a method that returns all articles that have a given word in their title;
+•	add a reference, given as a pair of article identifiers where the second represents an article cited by the first;
+•	Remove an article from the database.
+
+When an article is added to the database, it receives a unique identifier. When a reference is added, the cites and citedBy attributes of the two articles are updated. When an article is removed, that article should be removed from the citedBy attributes of all relevant articles in the database.
+
+Step 3: development of a hierarchy of classes
+It would be convenient to store conference papers and books in the database as well. They share some attributes with articles, such as an identifier, a title, authors and year, but a conference paper should have a conference attribute, while a book would have a publisher.
+Adapt the method to find articles so that it returns all publication for an author.
+
+Add a method that, given an author, computes his citation index. The citation index is defined as the weighted sum of the citations of all the author’s publications. The weights depend on the type of publication the author is cited in, 1.2 for books, 1.0 for articles, and 0.7 for conference papers. Take into account that these weights may change over time, and that they can be set for the database. 
+Implement a method for the database that, for a given publication, returns all publications that directly or indirectly cite that publication. An publication is cited indirectly in a publication when that publication cites a publication in which that publication is cited directly, or indirectly. In mathematical terms, compute the transitive closure of the cited relation.
